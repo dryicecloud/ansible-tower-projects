@@ -1,0 +1,12 @@
+---
+- name: Create new Linux User
+  hosts: "{{ hostname }}"
+  vars:
+    - username: "{{ username }}"
+    - password: "{{ password }}"
+    - hostname: "{{ hostname }}"
+  tasks:
+  - name: create user
+    shell: useradd {{ username }}
+  - name: set password to user
+    shell: echo -e "{{ password }}\n{{ password }}" | passwd {{ username }}
